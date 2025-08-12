@@ -91,7 +91,8 @@
   const REQUIRE_CODE = false; // code désactivé pour accès direct
   const ACCESS_CODE = "AE-0825";
 
-  const PIECES = ["Cuisine","Chambre","Salon","Salle de bain"];
+  // Liste de pièces DYNAMIQUE (on démarre avec 4 exemples)
+let ROOMS = ["Cuisine","Chambre","Salon","Salle de bain"];
   const POSES = ["Encastré maçonnerie","Placo","Semi-encastré","Sur-mesure"];
   const DESIGNATIONS_PAR_CATEGORIE = {
     "Prises": ["Prise"],
@@ -148,6 +149,17 @@
       <p class="muted" style="margin-top:8px;">Version structurée — Ajoute <b>?v=chapitres</b> à l’URL si besoin pour forcer l’actualisation.</p>
     ');
   }
+
+  function addRoom(){
+  const name = (prompt("Nom de la pièce :","") || "").trim();
+  if(!name) return;
+  if(ROOMS.includes(name)){
+    alert("Cette pièce existe déjà.");
+    return;
+  }
+  ROOMS.push(name);
+  pageHome();
+}
 
   function init(){
     if(REQUIRE_CODE){
